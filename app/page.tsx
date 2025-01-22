@@ -1,3 +1,4 @@
+import Categories from "@/components/Categories";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
@@ -11,6 +12,7 @@ export default function Home() {
         <Hero />
         <Features />
         <Metrics />
+        <Categories />
       </div>
     </main>
   );
