@@ -3,7 +3,7 @@ import umuravaLogo from "@/public/homepage/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { Menu } from "lucide-react";
+
 import MobileMenu from "./MobileMenu";
 
 import { links } from "@/navLinks";
