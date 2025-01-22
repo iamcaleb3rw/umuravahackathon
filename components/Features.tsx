@@ -17,7 +17,6 @@ const Features = () => {
       </div>
       <div className="flex flex-col gap-3 w-full mt-14">
         <FeatureCard
-          icon={BriefcaseBusiness}
           title={"Build a Strong Portfolio and Hand-On Experience"}
           description={
             "Tackle real-world projects through challenges and hackathons that mirror real world challenges faced by businesses and organizations. Therefore, showcase your skills and accomplishments to potential employers and clients through a portofolio of completed projects."
@@ -26,14 +25,12 @@ const Features = () => {
 
         <div className="w-full flex gap-3">
           <FeatureCard
-            icon={BriefcaseBusiness}
             title={"Enhance Your Employment Path"}
             description={
               "elop the in-demand skills and build a strong portofolio to increase your chances of landing your dream job or contract."
             }
           />
           <FeatureCard
-            icon={BriefcaseBusiness}
             title={"Earn Recognition and Prizes"}
             description={
               "Earn both Money and Knowledge Prizes by participating in various contests and competitions by working on real world projects and hackathons from our partner companies & organizations"

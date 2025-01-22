@@ -3,12 +3,11 @@ import Icon from "./Icon";
 import { LucideIcon } from "lucide-react";
 
 interface FeatureCardProps {
-  icon: LucideIcon;
   title: string;
   description: string;
 }
 
-const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
+const FeatureCard = ({ title, description }: FeatureCardProps) => {
   return (
     <div className="p-12 bg-primary w-full rounded-[12px] flex flex-col gap-6">
       <Icon />
