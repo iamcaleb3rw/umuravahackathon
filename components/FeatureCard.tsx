@@ -1,6 +1,5 @@
 import React from "react";
 import Icon from "./Icon";
-import { LucideIcon } from "lucide-react";
 
 interface FeatureCardProps {
   title: string;

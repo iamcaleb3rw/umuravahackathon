@@ -1,6 +1,5 @@
 import React from "react";
 import FeatureCard from "./FeatureCard";
-import { BriefcaseBusiness } from "lucide-react";
 
 const Features = () => {
   return (
