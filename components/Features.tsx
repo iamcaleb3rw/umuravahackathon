@@ -3,7 +3,7 @@ import FeatureCard from "./FeatureCard";
 
 const Features = () => {
   return (
-    <div className="min-h-screen flex flex-col gap-4 items-center xl:py-[76px] xl:px-[183px] bg-[#F9FAFB]">
+    <div className="min-h-screen flex flex-col gap-4 items-center py-14 px-1 xl:py-[76px] xl:px-[183px] bg-[#F9FAFB]">
       <div className="max-w-[530px] flex flex-col gap-3">
         <h1 className="-tracking-[0.5px] text-darktext text-center text-3xl font-bold">
           Experience a New Way of Building Work Experience
@@ -22,7 +22,7 @@ const Features = () => {
           }
         />
 
-        <div className="w-full flex gap-3">
+        <div className="w-full flex flex-col sm:flex-row gap-3">
           <FeatureCard
             title={"Enhance Your Employment Path"}
             description={
