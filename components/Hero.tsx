@@ -1,5 +1,4 @@
 import React from "react";
-import { workSans } from "@/fonts";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import Img1 from "@/public/homepage/image 1.png";
@@ -9,9 +8,9 @@ import BannerAvatars from "./BannerAvatars";
 
 const Hero = () => {
   return (
-    <div className=" px-2 xl:px-[100px] flex flex-col xl:flex-row justify-between gap-3 items-center mt-2">
+    <div className=" px-2 xl:px-[100px] xl:py-8 flex flex-col xl:flex-row justify-between gap-3 items-center mt-2">
       <div
-        className={`${workSans.className} max-w-[500px] flex items-start sm:items-center xl:items-start  flex-col gap-6`}
+        className={` max-w-[500px] flex items-start sm:items-center xl:items-start  flex-col gap-6`}
       >
         <h1 className="text-primary font-semibold text-2xl sm:text-4xl text-left sm:text-center xl:text-left">
           Build work experience through Skills Challenges Program

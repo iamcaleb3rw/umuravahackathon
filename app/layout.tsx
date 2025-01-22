@@ -1,6 +1,31 @@
 import type { Metadata } from "next";
-import { dmSans, workSans } from "@/fonts";
+import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans } from "next/font/google";
+import { Work_Sans } from "next/font/google";
 import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"], // Specify the subsets you need
+  weight: ["400", "500", "700"], // Include the weights you use
+  style: ["normal", "italic"], // Optional, add italic if needed
+  variable: "--font-dm-sans", // Optional: use a custom CSS variable
+});
+const workSans = Work_Sans({
+  subsets: ["latin"], // Specify the subsets you need
+  weight: ["400", "500", "700"], // Include the weights you use
+  style: ["normal", "italic"], // Optional, add italic if needed
+  variable: "--font-dm-sans", // Optional: use a custom CSS variable
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -9,12 +34,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${workSans.variable}`}>
-      <body>{children}</body>
+    <html lang="en">
+      <body className={workSans.className}>{children}</body>
     </html>
   );
 }
