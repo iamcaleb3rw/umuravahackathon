@@ -10,10 +10,11 @@ export default function Home() {
       <div className="min-h-screen border-b">
         <Navigation />
         <Hero />
-        <Features />
-        <Metrics />
-        <Categories />
       </div>
+
+      <Features />
+      <Metrics />
+      <Categories />
     </main>
   );
 }
