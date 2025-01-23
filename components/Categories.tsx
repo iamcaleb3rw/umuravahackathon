@@ -26,7 +26,7 @@ const slides = [
 
 const Categories = () => {
   return (
-    <div className="py-14 min-h-screen flex flex-col gap-12">
+    <div className="py-14 min-h-screen flex flex-col gap-12 border-b">
       <div className="flex flex-col gap-3 items-center px-2">
         <h1 className="text-darktext text-2xl md:text-4xl tracking-tight font-bold max-w-[860px] text-center">
           Skills Challenges Cover various in-demand skills and Careers for the
@@ -68,7 +68,7 @@ const Categories = () => {
           ))}
         </div>
       </div>
-      <div className="max-w-[1000px] mx-auto w-full height-[600px]">
+      <div className="max-w-[1000px] md:my-10 mx-auto w-full height-[600px]">
         <Carousel slides={slides} />
       </div>
     </div>

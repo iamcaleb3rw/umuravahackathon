@@ -1,4 +1,6 @@
+import Benefits from "@/components/Benefits";
 import Categories from "@/components/Categories";
+import Explore from "@/components/Explore";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
@@ -15,6 +17,8 @@ export default function Home() {
       <Features />
       <Metrics />
       <Categories />
+      <Explore />
+      <Benefits />
     </main>
   );
 }
