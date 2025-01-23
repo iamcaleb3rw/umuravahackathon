@@ -5,6 +5,7 @@ import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
 import Navigation from "@/components/Navigation";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Categories />
       <Explore />
       <Benefits />
+      <Testimonials />
     </main>
   );
 }

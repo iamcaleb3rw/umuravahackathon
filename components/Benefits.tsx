@@ -5,7 +5,7 @@ import bannerImg from "@/public/homepage/banner_img 1.png";
 import Image from "next/image";
 const Benefits = () => {
   return (
-    <div className="flex flex-col gap-14 bg-muted min-h-screen py-16">
+    <div className="flex flex-col gap-14 bg-muted min-h-screen py-16 border-b">
       <div className="flex flex-col gap-4">
         <h1 className=" text-2xl md:text-4xl font-bold text-darktext max-w-[700px] mx-auto text-center">
           What else can I gain from participating in Skills Challenges ?
@@ -28,23 +28,23 @@ const Benefits = () => {
 
           <BenefitComponent
             icon={Heart}
-            title={"Enhance Your Employment Path"}
+            title={"Earn Recognition and Prizes"}
             description={
-              "Network with other talented individuals and learn from their experiences"
+              "Gain valuable experience and knowledge to advance your career in the digital economy."
             }
           />
           <BenefitComponent
             icon={Heart}
-            title={"Enhance Your Employment Path"}
+            title={"Personal Growth"}
             description={
-              "Network with other talented individuals and learn from their experiences"
+              "Challenge yourself, learn new skills, and expand your professional network."
             }
           />
           <BenefitComponent
             icon={Heart}
-            title={"Enhance Your Employment Path"}
+            title={"Learn from Industry Experts"}
             description={
-              "Network with other talented individuals and learn from their experiences"
+              "Access valuable insights and guidance from experienced professionals in the digital careers fields and spaces."
             }
           />
         </div>

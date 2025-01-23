@@ -21,7 +21,7 @@ const BenefitComponent = ({
         <h1 className="text-xl sm:text-sm  font-bold">{title}</h1>
       </div>
       <div>
-        <p className="text-xs text-mutedtext max-w-[250px]">{description}</p>
+        <p className="text-xs text-mutedtext max-w-[270px]">{description}</p>
       </div>
     </div>
   );
