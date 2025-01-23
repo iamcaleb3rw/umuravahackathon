@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 const Explore = () => {
   return (
-    <div className="min-h-screen md:mt-14">
+    <div className="min-h-screen md:mt-14 md:mb-14 mb-5">
       <div className="flex flex-col gap-14">
         <div className="flex flex-col items-center gap-7">
           <h1 className="text-2xl md:text-4xl text-darktext text-center tracking-tight font-bold">
