@@ -3,6 +3,7 @@ import Categories from "@/components/Categories";
 import CtaSection from "@/components/CtaSection";
 import Explore from "@/components/Explore";
 import Features from "@/components/Features";
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
 import Navigation from "@/components/Navigation";

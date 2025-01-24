@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 
 const CtaSection = () => {
   return (
-    <div className="min-h-[90vh] py-12 xl:px-24">
+    <div className="min-h-[90vh] py-20 border-t xl:px-24">
       <div className="h-full w-full bg-primary flex flex-col lg:flex-row pb-3 lg:items-center gap-6 lg:gap-[150px] lg:px-16 lg:py-8 relative rounded-[30px]">
         <div className=" w-full lg:w-[400px] z-20">
           <Image src={bannerImage} alt="banner" className="w-[100%]" />
