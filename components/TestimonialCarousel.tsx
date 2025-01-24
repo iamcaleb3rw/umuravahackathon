@@ -89,7 +89,7 @@ export function TestimonialCarousel() {
   return (
     <div
       className="w-full"
-      style={{ maxWidth: `${VISIBLE_WIDTH * 2 + PARTIAL_CARD_WIDTH + 200}px` }}
+      style={{ maxWidth: `${VISIBLE_WIDTH * 2 + PARTIAL_CARD_WIDTH + 600}px` }}
     >
       <div className="overflow-hidden">
         <div
@@ -111,14 +111,14 @@ export function TestimonialCarousel() {
           ))}
         </div>
       </div>
-      <div className="mt-4 flex justify-center gap-2">
+      <div className="mt-4 lg:mt-16 flex justify-center gap-2">
         {VIDEOS.map((_, index) => (
           <button
             key={index}
             onClick={() => scrollToIndex(index)}
             className={`h-2 w-2 rounded-full transition-colors ${
               index === currentIndex
-                ? "bg-blue-500"
+                ? "bg-primary"
                 : "bg-gray-200 hover:bg-gray-300"
             }`}
             aria-label={`Go to slide ${index + 1}`}

@@ -5,6 +5,7 @@ import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
 import Navigation from "@/components/Navigation";
+import Process from "@/components/Process";
 import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <Explore />
       <Benefits />
       <Testimonials />
+      <Process />
     </main>
   );
 }

@@ -4,7 +4,7 @@ import MobileCarousel from "./MobileCarousel";
 
 const Testimonials = () => {
   return (
-    <div className="min-h-screen flex flex-col gap-14 px-3 py-6 xl:py-24">
+    <div className="min-h-screen flex flex-col gap-14 pl-3 py-6 xl:py-24 border-b">
       <div className="xl:ml-24">
         <h1 className="text-2xl md:text-4xl text-darktext font-bold leading-tight max-w-[600px]">
           Users are in Love with Skills Challenges Program
