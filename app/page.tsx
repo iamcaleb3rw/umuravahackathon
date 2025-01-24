@@ -1,5 +1,6 @@
 import Benefits from "@/components/Benefits";
 import Categories from "@/components/Categories";
+import CtaSection from "@/components/CtaSection";
 import Explore from "@/components/Explore";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
@@ -23,6 +24,7 @@ export default function Home() {
       <Benefits />
       <Testimonials />
       <Process />
+      <CtaSection />
     </main>
   );
 }
