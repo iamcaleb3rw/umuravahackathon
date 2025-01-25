@@ -16,7 +16,7 @@ const MobileMenu = () => {
       <SheetTrigger>
         <Menu />
       </SheetTrigger>
-      <SheetContent className="w-[400px] sm:w-[300px]">
+      <SheetContent className="w-full sm:w-[300px]" side={"bottom"}>
         <SheetHeader>
           <SheetTitle className="text-primary text-left">
             Browse the platform
