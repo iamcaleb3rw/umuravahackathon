@@ -4,6 +4,35 @@ import { Button } from "@/components/ui/button";
 import bannerImg from "@/public/about/Image 3.png";
 import FeatureCard from "@/components/FeatureCard";
 
+import toriLogo from "@/public/about/Tori 1.png";
+import gdgLogo from "@/public/about/Gdg_Kigali 1.png";
+import eduCollabLogo from "@/public/about/EducationCollaborative 1.png";
+import keplerLogo from "@/public/about/KeplerLogo 1.png";
+import hillLogo from "@/public/about/HiiL_Logo 1.png";
+import cibaLogo from "@/public/about/CIBA 1.png";
+import aredLogo from "@/public/about/Ared 1.png";
+import igiheLogo from "@/public/about/IGIHE_LOGO 1.png";
+import viamoLogo from "@/public/about/viamo.png";
+import lateriteLogo from "@/public/about/laterite.png";
+import sokoFund from "@/public/about/SokoFund 1.png";
+import dashBoardImage from "@/public/homepage/banner_img 1.png";
+import ListComponent from "@/components/ListComponent";
+import ellipseImage from "@/public/homepage/ellipse.svg";
+
+const companies = [
+  { logo: toriLogo },
+  { logo: gdgLogo },
+  { logo: eduCollabLogo },
+  { logo: keplerLogo, width: 90 },
+  { logo: hillLogo },
+  { logo: cibaLogo, width: 100 },
+  { logo: aredLogo },
+  { logo: igiheLogo },
+  { logo: viamoLogo },
+  { logo: lateriteLogo },
+  { logo: sokoFund, width: 100 },
+];
+
 const InstitutionsPage = () => {
   return (
     <div>
@@ -75,6 +104,89 @@ const InstitutionsPage = () => {
               />
             </div>
           </div>
+        </div>
+      </div>
+      <div className="min-h-[80vh] flex flex-col gap-4 justify-center items-center">
+        <h1 className="text-xl max-w-[600px] md:text-3xl text-darktext text-center tracking-tight font-bold">
+          Join a few Educational Institutions using Skills Challenges by Umurava
+        </h1>
+        <div className="px-2 grid grid-cols-6 gap-1 sm:gap-2 xl:gap-8 text-center justify-items-center ">
+          {companies.map((company, index) => (
+            <div className="flex items-center justify-center" key={index}>
+              <Image
+                src={company.logo}
+                alt="Logo"
+                width={company.width ? company.width : 150}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col gap-14 bg-muted min-h-screen py-16 border-b">
+        <div className="flex flex-col gap-4">
+          <h1 className=" text-2xl md:text-3xl font-bold text-darktext max-w-[700px] mx-auto text-center">
+            How Skills Challenges Program can Be Integrated into your Learning
+            Institution
+          </h1>
+        </div>
+        <div className="px-3 xl:px-24 flex flex-col lg:flex-row gap-5 items-start sm:items-center justify-between">
+          <div className=" flex flex-col gap-6">
+            <ListComponent
+              number={"1"}
+              text={"As Career Development and Job Readiness Program"}
+            />
+            <ListComponent
+              number={"2"}
+              text={"As Skills Assessments Method after a course or a term"}
+            />
+            <ListComponent
+              number={"3"}
+              text={
+                "As extracurricular activities to complement academic courses"
+              }
+            />
+            <ListComponent
+              number={"4"}
+              text={"As the portfolio of the Students"}
+            />
+            <ListComponent
+              number={"5"}
+              text={"As part of Capstone Projects or final-year assignments "}
+            />
+          </div>
+          <div>
+            <Image
+              src={dashBoardImage}
+              alt="bannerImg"
+              className="max-w-[450px] w-full"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="px-2 xl:px-[110px] flex flex-col w-full border items-center justify-center py-[50px]  min-h-[50vh]">
+        <div className="relative min-h-[290px] w-full flex items-center justify-center xl:px-[75px] bg-primary rounded-[26px] overflow-hidden">
+          <div className="flex flex-col items-center gap-6">
+            <h2 className="text-white text-xl sm:text-2xl md:text-3xl font-bold max-w-[400px] text-center">
+              Ready to transform your learning insitituion?
+            </h2>
+            <Button
+              className="text-primary max-w-[250px]"
+              size={"lg"}
+              variant={"secondary"}
+            >
+              Partner with Us
+            </Button>
+          </div>
+          <Image
+            src={ellipseImage}
+            alt="Ellipse Image"
+            className="absolute -left-60 -bottom-[360px]"
+          />
+          <Image
+            src={ellipseImage}
+            alt="Ellipse Image"
+            className="absolute -right-[270px] -top-[370px]"
+          />
         </div>
       </div>
     </div>
