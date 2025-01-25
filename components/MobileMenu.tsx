@@ -27,6 +27,7 @@ const MobileMenu = () => {
             <Link key={link.name} href={link.path}>
               <div className=" ml-2 text-center  text-dark-muted p-2 underline  rounded">
                 {link.name}
+                {link.path}
               </div>
             </Link>
           ))}
