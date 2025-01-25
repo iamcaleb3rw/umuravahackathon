@@ -14,7 +14,6 @@ export default function Home() {
   return (
     <main>
       <div className="min-h-screen border-b">
-        <Navigation />
         <Hero />
       </div>
 

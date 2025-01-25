@@ -5,15 +5,15 @@ export const links = [
   },
   {
     name: "Challenges & Hackathons",
-    path: "/",
+    path: "/hackathons",
   },
   {
     name: "For Educational Institutions",
-    path: "/",
+    path: "/institutions",
   },
   {
     name: "About Us",
-    path: "/",
+    path: "/about",
   },
   {
     name: "Contact Us",

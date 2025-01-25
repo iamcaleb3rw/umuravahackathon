@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation";
 
 const workSans = Work_Sans({
   subsets: ["latin"], // Specify the subsets you need
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`flex flex-col min-h-screen ${workSans.className}`}>
+        <Navigation />
         <main className="flex-grow">{children}</main>
         <Footer className="min-h-[60vh]" />
       </body>

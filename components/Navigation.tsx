@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import MobileMenu from "./MobileMenu";
 
 import { links } from "@/navLinks";
+import Path from "./Path";
 
 const Navigation = () => {
   return (
@@ -17,11 +18,16 @@ const Navigation = () => {
         </div>
         <div className="hidden xl:flex gap-8">
           {links.map((link, index) => (
-            <Link href={link.path} key={index}>
-              <p className="text-[#2B3338] text-sm hover:text-primary">
-                {link.name}
-              </p>
-            </Link>
+            <div key={index}>
+              <Link href={link.path}>
+                <p className="text-[#2B3338] text-sm hover:text-primary">
+                  {link.name}
+                </p>
+              </Link>
+              <div className="hidden">
+                <Path pathName={link.name} />
+              </div>
+            </div>
           ))}
         </div>
         <div className="flex items-center gap-1">
