@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 
 import { Work_Sans } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/Footer";
-import Navigation from "@/components/Navigation";
+
+import { ClerkProvider } from "@clerk/nextjs";
 
 const workSans = Work_Sans({
   subsets: ["latin"], // Specify the subsets you need
@@ -23,12 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`flex flex-col min-h-screen ${workSans.className}`}>
-        <Navigation />
-        <main className="flex-grow">{children}</main>
-        <Footer className="min-h-[60vh]" />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`flex flex-col min-h-screen ${workSans.className}`}>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

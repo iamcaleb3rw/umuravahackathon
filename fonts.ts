@@ -6,8 +6,4 @@ export const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
-export const workSans = Work_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-work-sans",
-});
+

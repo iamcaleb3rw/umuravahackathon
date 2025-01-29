@@ -4,7 +4,7 @@ import React from "react";
 const Icon = () => {
   return (
     <div className="bg-white w-[63px] h-[63px] rounded-[5px] flex items-center justify-center">
-      <BriefcaseBusiness className="text-primary" />
+      <BriefcaseBusiness className="text-primary"/>
     </div>
   );
 };

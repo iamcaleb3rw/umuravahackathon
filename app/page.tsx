@@ -14,6 +14,7 @@ export default function Home() {
   return (
     <main>
       <div className="min-h-screen border-b">
+        <Navigation />
         <Hero />
       </div>
 
@@ -25,6 +26,9 @@ export default function Home() {
       <Testimonials />
       <Process />
       <CtaSection />
+      <footer>
+        <Footer className="" />
+      </footer>
     </main>
   );
 }
