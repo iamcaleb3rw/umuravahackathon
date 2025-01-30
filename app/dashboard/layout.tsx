@@ -1,8 +1,14 @@
 import MobileSidebar from "@/components/MobileSidebar";
 import NavBar from "@/components/NavBar";
 import SidebarComponent from "@/components/SidebarComponent";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+  const { userId } = await auth();
+  if (!userId) {
+    return redirect("/");
+  }
   return (
     <div className="flex">
       <SidebarComponent />

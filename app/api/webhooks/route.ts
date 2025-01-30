@@ -1,6 +1,8 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { WebhookEvent } from "@clerk/nextjs/server";
+import { clerkClient, WebhookEvent } from "@clerk/nextjs/server";
+import { createOrUpdateUser, deleteUser } from "@/lib/actions/user";
+import { userAgent } from "next/server";
 
 export async function POST(req: Request) {
   const SIGNING_SECRET = process.env.SIGNING_SECRET;
@@ -52,11 +54,43 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
 
-  if (eventType === "user.created") {
+  const client = await clerkClient();
+
+  if (eventType === "user.created" || eventType === "user.updated") {
+    const { first_name, last_name, image_url, email_addresses } = evt.data;
+    try {
+      const user = await createOrUpdateUser({
+        id,
+        first_name,
+        last_name,
+        image_url,
+        email_addresses,
+      });
+      if (user && eventType === "user.created") {
+        try {
+          if (id) {
+            await client.users.updateUserMetadata(id, {
+              publicMetadata: {
+                userMongoId: user._id,
+              },
+            });
+          }
+        } catch (error) {
+          console.log("Could not update user metadata", error);
+        }
+      }
+    } catch (err) {
+      console.log("Could not create or update", err);
+    }
+
     console.log("user created!");
   }
   if (eventType === "user.deleted") {
-    console.log("user deleted!");
+    try {
+      if (id) {
+        await deleteUser(id);
+      }
+    } catch {}
   }
   if (eventType === "user.updated") {
     console.log("user updated!");
