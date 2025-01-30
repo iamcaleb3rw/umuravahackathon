@@ -5,6 +5,7 @@ import Img1 from "@/public/homepage/image 1.png";
 import Img2 from "@/public/homepage/Image 2.png";
 import ReactionImage from "./ReactionImage";
 import BannerAvatars from "./BannerAvatars";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -20,7 +21,9 @@ const Hero = () => {
           working on Hands-on projects & hackathons from various businesses &
           organizations.
         </p>
-        <Button className="text-sm w-full xl:w-[207px] ">Get Started</Button>
+        <Link href={"/sign-up"}>
+          <Button className="text-sm w-full xl:w-[207px] ">Get Started</Button>
+        </Link>
       </div>
       <div className="flex gap-2 mt-4">
         <div className="h-[370px] max-w-[230px] relative">

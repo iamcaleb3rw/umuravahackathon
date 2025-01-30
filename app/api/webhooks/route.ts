@@ -51,8 +51,16 @@ export async function POST(req: Request) {
   // For this guide, log payload to console
   const { id } = evt.data;
   const eventType = evt.type;
-  console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
-  console.log("Webhook payload:", body);
+
+  if (eventType === "user.created") {
+    console.log("user created!");
+  }
+  if (eventType === "user.deleted") {
+    console.log("user deleted!");
+  }
+  if (eventType === "user.updated") {
+    console.log("user updated!");
+  }
 
   return new Response("Webhook received", { status: 200 });
 }
