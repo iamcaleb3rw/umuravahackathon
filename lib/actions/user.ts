@@ -1,5 +1,6 @@
 import User from "../modals/user";
 import connect from "../db";
+
 export interface UserProps {
   id: string | null | undefined;
   first_name: string | null | undefined;
@@ -7,7 +8,6 @@ export interface UserProps {
   email_addresses: { email_address: string }[] | null | undefined;
   image_url: string | null | undefined;
 }
-
 
 export const createOrUpdateUser = async ({
   id,
@@ -24,7 +24,10 @@ export const createOrUpdateUser = async ({
         $set: {
           firstName: first_name,
           lastName: last_name,
-          email: email_addresses?[0]?.email_address,
+          email:
+            email_addresses && email_addresses.length > 0
+              ? email_addresses[0].email_address
+              : null,
           imageUrl: image_url,
         },
       },
@@ -32,7 +35,8 @@ export const createOrUpdateUser = async ({
     );
     return user;
   } catch (err) {
-    console.log("Could not create or update user", err);
+    console.error("Could not create or update user", err);
+    throw err; // Rethrow the error for further handling
   }
 };
 
@@ -42,7 +46,7 @@ export const deleteUser = async (id: string) => {
     await User.findOneAndDelete({ clerkId: id });
     return true;
   } catch (err) {
-    console.log("Could not delete user", err);
-    return false;
+    console.error("Could not delete user", err);
+    return false; // Consider throwing the error instead
   }
 };
