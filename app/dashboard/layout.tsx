@@ -1,28 +1,22 @@
-import MobileSidebar from "@/components/MobileSidebar";
+import type React from "react";
+
 import NavBar from "@/components/NavBar";
-import SidebarComponent from "@/components/SidebarComponent";
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { DashboardSidebar } from "@/components/Sidebar";
 
-const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
-  const { userId } = await auth();
-  if (!userId) {
-    return redirect("/");
-  }
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div className="flex">
-      <SidebarComponent />
-
-      <div className="lg:w-[calc(100vw-240px)] h-[100vh] w-full overflow-y-auto inline-block">
+    <div className="flex h-screen">
+      <aside className="w-64 bg-gray-50 border-r hidden md:block">
+        <DashboardSidebar />
+      </aside>
+      <div className="flex flex-col flex-1 overflow-hidden">
         <NavBar />
-        <div className="lg:mt-12 mt-16">
-          <MobileSidebar />
-        </div>
-
-        <div className="h-[120vh] overflow-auto px-6 py-6">{children}</div>
+        <main className="flex-1 overflow-y-auto p-1 md:p-4">{children}</main>
       </div>
     </div>
   );
-};
-
-export default DashboardLayout;
+}

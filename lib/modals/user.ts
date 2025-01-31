@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema(
   {
@@ -7,6 +7,18 @@ const UserSchema = new Schema(
     username: { type: "string", required: true, unique: true },
     password: { type: "string", required: true },
     avatar: { type: "string", default: "" },
+    hackathons: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Hackathon",
+      },
+    ],
+    participations: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Hackathon",
+      },
+    ],
   },
   {
     timestamps: true,

@@ -9,6 +9,16 @@ export interface UserProps {
   image_url: string | null | undefined;
 }
 
+export const findUser = async (clerkId: string) => {
+  try {
+    await connect();
+    const user = await User.findOne({ clerkId: clerkId });
+    return user;
+  } catch {
+    console.log("Error retrieving user");
+  }
+};
+
 export const createOrUpdateUser = async ({
   id,
   first_name,
