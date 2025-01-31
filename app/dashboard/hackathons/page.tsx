@@ -13,9 +13,9 @@ const Hackathons = async () => {
           <Button>Create a Challenge</Button>
         </Link>
       </div>
-      <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {hackathons?.map((hackathon) => (
-          <div>
+          <div key={hackathon.id}>
             <ChallengeCard
               status={hackathon.status}
               title={hackathon.title}
