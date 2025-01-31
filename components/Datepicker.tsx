@@ -11,6 +11,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+const today = new Date();
+
 interface DatePickerDemoProps {
   value?: Date;
   onChange: (date: Date | undefined) => void;
@@ -37,6 +39,7 @@ export function DatePickerDemo({ value, onChange }: DatePickerDemoProps) {
           selected={value}
           onSelect={onChange}
           initialFocus
+          fromDate={today}
         />
       </PopoverContent>
     </Popover>

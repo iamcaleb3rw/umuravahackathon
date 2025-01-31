@@ -58,7 +58,7 @@ export async function POST(req: Request) {
       projectDescription: projectDescription,
       projectTasks: projectTasks,
       contactEmail: contactEmail,
-      duration: duration,
+      timeline: duration,
       startDate: startDate,
       endDate: endDate,
       deadline: deadline,

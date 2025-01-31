@@ -1,17 +1,10 @@
 "use server";
-import { BarChart, Users, Package, Settings } from "lucide-react";
 import Logo from "@/public/dashboard/sidebarlogo.png";
 import Image from "next/image";
 import { FooterLinks, SidebarLinks } from "@/SidebarLinks";
 
 import { currentUser } from "@clerk/nextjs/server";
-
-const sidebarItems = [
-  { icon: BarChart, label: "Overview", href: "/dashboard" },
-  { icon: Users, label: "Customers", href: "/dashboard/customers" },
-  { icon: Package, label: "Products", href: "/dashboard/products" },
-  { icon: Settings, label: "Settings", href: "/dashboard/settings" },
-];
+import Link from "next/link";
 
 export const DashboardSidebar = async () => {
   const user = await currentUser();
@@ -24,10 +17,13 @@ export const DashboardSidebar = async () => {
         <ul className="space-y-2">
           {SidebarLinks.map((item) => (
             <li key={item.label}>
-              <a href={item.path} className="flex items-center p-2  rounded-lg">
+              <Link
+                href={item.path}
+                className="flex items-center p-2  rounded-lg"
+              >
                 <item.Icon className="w-5 h-5  transition duration-75" />
                 <span className="ml-3">{item.label}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

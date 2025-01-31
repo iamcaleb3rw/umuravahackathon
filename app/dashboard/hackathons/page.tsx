@@ -20,7 +20,7 @@ const Hackathons = async () => {
               status={hackathon.status}
               title={hackathon.title}
               level={"(Intermediate, Senior)"}
-              timeline={hackathon.duration}
+              timeline={hackathon.timeline}
             />
           </div>
         ))}

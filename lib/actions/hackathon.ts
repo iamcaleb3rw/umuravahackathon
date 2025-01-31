@@ -4,9 +4,8 @@ import Hackathon from "../modals/hackathon";
 export const fetchHackathons = async () => {
   try {
     await connect();
-    const hackathon = await Hackathon.find();
-    console.log(hackathon);
-    return hackathon;
+    const hackathons = await Hackathon.find();
+    return hackathons;
   } catch (error) {
     console.log("Error fetching hackathons", error);
   }
