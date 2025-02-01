@@ -5,7 +5,7 @@ export const fetchHackathons = async () => {
   try {
     await connect();
     const hackathons = await Hackathon.find();
-    return hackathons;
+    return JSON.parse(JSON.stringify(hackathons));
   } catch (error) {
     console.log("Error fetching hackathons", error);
   }
