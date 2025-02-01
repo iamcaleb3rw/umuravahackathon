@@ -30,48 +30,56 @@ const Hackathons = () => {
           title={"Design a dashboard for SokoFund"}
           level="(Junior, Intermediate, Senior)"
           timeline="15 Days"
+          id={"dzjk"}
         />
         <ChallengeCard
           status={"Open"}
           title={"Design a dashboard for SokoFund"}
           level="(Junior, Intermediate, Senior)"
           timeline="15 Days"
+          id={"dzjk"}
         />
         <ChallengeCard
           status={"Open"}
           title={"Design a dashboard for SokoFund"}
           level="(Junior, Intermediate, Senior)"
           timeline="15 Days"
+          id={"dzjk"}
         />
         <ChallengeCard
           status={"Open"}
           title={"Design a dashboard for SokoFund"}
           level="(Junior, Intermediate, Senior)"
           timeline="15 Days"
+          id={"dzjk"}
         />
         <ChallengeCard
           status={"Open"}
           title={"Design a dashboard for SokoFund"}
           level="(Junior, Intermediate, Senior)"
           timeline="15 Days"
+          id={"dzjk"}
         />
         <ChallengeCard
           status={"Open"}
           title={"Design a dashboard for SokoFund"}
           level="(Junior, Intermediate, Senior)"
           timeline="15 Days"
+          id={"dzjk"}
         />
         <ChallengeCard
           status={"Open"}
           title={"Design a dashboard for SokoFund"}
           level="(Junior, Intermediate, Senior)"
           timeline="15 Days"
+          id={"dzjk"}
         />
         <ChallengeCard
           status={"Open"}
           title={"Design a dashboard for SokoFund"}
           level="(Junior, Intermediate, Senior)"
           timeline="15 Days"
+          id={"dzjk"}
         />
       </div>
     </div>
