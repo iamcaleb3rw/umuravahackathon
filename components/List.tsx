@@ -24,7 +24,7 @@ const getHackathonStatus = (
   const now = new Date();
 
   if (now > endDate) return "Completed";
-  if (now >= startDate && now <= endDate) return "Ongoing";
+  if (now >= deadline && now <= endDate) return "Ongoing";
   return "Open";
 };
 
@@ -37,7 +37,7 @@ const List = ({ hackathons }: ListProps) => {
       const status = getHackathonStatus(
         new Date(hackathon.startDate),
         new Date(hackathon.endDate),
-        new Date(hackathon.deadline) // Use deadline instead of registrationDeadline
+        new Date(hackathon.deadline)
       );
       return status === activeStatus;
     });
@@ -49,7 +49,7 @@ const List = ({ hackathons }: ListProps) => {
         const status = getHackathonStatus(
           new Date(hackathon.startDate),
           new Date(hackathon.endDate),
-          new Date(hackathon.deadline) // Use deadline instead of registrationDeadline
+          new Date(hackathon.deadline)
         );
         acc[status] = (acc[status] || 0) + 1;
         return acc;
@@ -71,7 +71,7 @@ const List = ({ hackathons }: ListProps) => {
               onClick={() => setActiveStatus(status)}
               className={`cursor-pointer flex items-center rounded-lg bg-muted ${
                 activeStatus === status
-                  ? "opacity-100 border-yellow-300 border  bg-primary/30"
+                  ? "opacity-100 border-yellow-300 border bg-primary/30"
                   : ""
               }`}
             >
@@ -92,19 +92,25 @@ const List = ({ hackathons }: ListProps) => {
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-        {filteredHackathons.map((hackathon) => (
-          <ChallengeCard
-            key={hackathon._id.toString()} // Use _id for the key
-            status={getHackathonStatus(
-              new Date(hackathon.startDate),
-              new Date(hackathon.endDate),
-              new Date(hackathon.deadline) // Use deadline instead of registrationDeadline
-            )}
-            title={hackathon.title}
-            level="(Intermediate, Senior)"
-            timeline={hackathon.timeline}
-          />
-        ))}
+        {filteredHackathons.length > 0 ? (
+          filteredHackathons.map((hackathon) => (
+            <ChallengeCard
+              key={hackathon._id.toString()}
+              status={getHackathonStatus(
+                new Date(hackathon.startDate),
+                new Date(hackathon.endDate),
+                new Date(hackathon.deadline)
+              )}
+              title={hackathon.title}
+              level="(Intermediate, Senior)"
+              timeline={hackathon.timeline}
+            />
+          ))
+        ) : (
+          <div className="col-span-full text-center text-mutedtext italic mt-6">
+            There are currently no {activeStatus} challenges
+          </div>
+        )}
       </div>
     </div>
   );
