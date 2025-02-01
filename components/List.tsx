@@ -104,7 +104,7 @@ const List = ({ hackathons }: ListProps) => {
               title={hackathon.title}
               level="(Intermediate, Senior)"
               timeline={hackathon.timeline}
-              path={hackathon._id.toString()}
+              id={hackathon._id.toString()}
             />
           ))
         ) : (

@@ -10,7 +10,7 @@ interface ChallengeCardProps {
   title: string;
   level: string;
   timeline: string;
-  path: string;
+  id: string;
 }
 
 const ChallengeCard = ({
@@ -18,7 +18,7 @@ const ChallengeCard = ({
   title,
   level,
   timeline,
-  path,
+  id,
 }: ChallengeCardProps) => {
   return (
     <div className="w-full py-3 border rounded-2xl">
@@ -48,7 +48,7 @@ const ChallengeCard = ({
         </div>
       </div>
       <div className="pt-3 px-4">
-        <Link href={`/dashboard/hackathons/${path}`}>
+        <Link href={`/dashboard/hackathons/${id}`}>
           <Button className="h-8">View Challenge</Button>
         </Link>
       </div>
