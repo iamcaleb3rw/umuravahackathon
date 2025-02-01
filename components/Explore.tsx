@@ -22,18 +22,21 @@ const Explore = () => {
             title={"Design a dashboard for SokoFund"}
             level="(Junior, Intermediate, Senior)"
             timeline="15 Days"
+            id="dnrjncjre"
           />
           <ChallengeCard
             status={"Open"}
             title={"Design a dashboard for SokoFund"}
             level="(Junior, Intermediate, Senior)"
             timeline="15 Days"
+            id="cbejbchjer"
           />
           <ChallengeCard
             status={"Open"}
             title={"Design a dashboard for SokoFund"}
             level="(Junior, Intermediate, Senior)"
             timeline="15 Days"
+            id="zcjrcerbchjhje"
           />
         </div>
         <div className="text-center">
