@@ -22,7 +22,7 @@ const hackathonSchema = new Schema(
     endDate: { type: Date, required: true },
     startDate: { type: Date, required: true },
     deadline: { type: Date, required: true },
-    createdBy: { type: Schema.Types.ObjectId, ref: User, required: true },
+    createdBy: { type: String, required: true },
     participants: [{ type: Schema.Types.ObjectId, ref: User, default: [] }],
     status: {
       type: String,

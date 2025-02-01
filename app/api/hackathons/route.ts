@@ -62,7 +62,7 @@ export async function POST(req: Request) {
       startDate: startDate,
       endDate: endDate,
       deadline: deadline,
-      createdBy: user._id,
+      createdBy: userId,
       prize: moneyPrize,
     });
 

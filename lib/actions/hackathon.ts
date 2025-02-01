@@ -11,4 +11,14 @@ export const fetchHackathons = async () => {
   }
 };
 
-fetchHackathons();
+export const fetchHackathonsById = async (id: string) => {
+  try {
+    await connect();
+    const hackathon = await Hackathon.findOne({ _id: id });
+    return JSON.parse(JSON.stringify(hackathon));
+  } catch (error) {
+    console.log("Error fetching single Hackathon", error);
+  }
+};
+
+fetchHackathonsById("679e4cff1374a2be0ec4ad9c");

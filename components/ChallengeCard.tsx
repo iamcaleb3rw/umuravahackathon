@@ -4,11 +4,13 @@ import whiteLogo from "@/public/homepage/whitelogo.png";
 import Image from "next/image";
 import SkillTag from "./SkillTag";
 import { Button } from "./ui/button";
+import Link from "next/link";
 interface ChallengeCardProps {
   status: string;
   title: string;
   level: string;
   timeline: string;
+  path: string;
 }
 
 const ChallengeCard = ({
@@ -16,6 +18,7 @@ const ChallengeCard = ({
   title,
   level,
   timeline,
+  path,
 }: ChallengeCardProps) => {
   return (
     <div className="w-full py-3 border rounded-2xl">
@@ -45,7 +48,9 @@ const ChallengeCard = ({
         </div>
       </div>
       <div className="pt-3 px-4">
-        <Button className="h-8">View Challenge</Button>
+        <Link href={`/dashboard/hackathons/${path}`}>
+          <Button className="h-8">View Challenge</Button>
+        </Link>
       </div>
     </div>
   );
