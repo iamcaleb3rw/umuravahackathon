@@ -1,3 +1,4 @@
+"use client";
 import UpdateHackathonForm from "@/components/Updateform";
 import { z } from "zod";
 import React from "react";
@@ -6,8 +7,9 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DatePickerDemo } from "@/components/Datepicker";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Textarea } from "@/components/ui/textarea";
 
 const hackathonSchema = z
   .object({
@@ -57,7 +59,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<HackathonFormData> = async (data) => {
+  const onSubmit: SubmitHandler<HackathonFormData> = async (data: any) => {
     console.log("Submission started", data); // Log the data being submitted
     try {
       const response = await axios.post("/api/hackathons", data);
