@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import Hackathon from "@/lib/modals/hackathon";
 import connect from "@/lib/db";
 import { findUser } from "@/lib/actions/user";
+import { deleteHackathonById } from "@/lib/actions/hackathon";
 
 // Connect to MongoDB (ensure this is done once in your app)
 
@@ -80,5 +81,21 @@ export async function POST(req: Request) {
       { error: "Internal Server Error" },
       { status: 500 }
     );
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const { id } = await req.json();
+    console.log(id);
+
+    if (!id) {
+      return new NextResponse("Missing required fields", { status: 404 });
+    }
+
+    const deletedHackathon = await deleteHackathonById(id);
+    return new NextResponse(deletedHackathon);
+  } catch (error) {
+    return new NextResponse("Something went wrong", { status: 500 });
   }
 }

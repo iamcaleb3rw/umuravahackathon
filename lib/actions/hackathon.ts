@@ -21,4 +21,12 @@ export const fetchHackathonsById = async (id: string) => {
   }
 };
 
-fetchHackathonsById("679e4cff1374a2be0ec4ad9c");
+export const deleteHackathonById = async (id: string) => {
+  try {
+    await connect();
+    const deletedHackathon = await Hackathon.findOneAndDelete({ _id: id });
+    return JSON.parse(JSON.stringify(deletedHackathon));
+  } catch (error) {
+    console.log("Error deleting Hackathon", error);
+  }
+};

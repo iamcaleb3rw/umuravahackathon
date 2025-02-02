@@ -1,6 +1,19 @@
 import ContactDetail from "@/components/ContactDetail";
+import DeleteButton from "@/components/DeleteButton";
 import { Button } from "@/components/ui/button";
-import { fetchHackathonsById } from "@/lib/actions/hackathon";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  deleteHackathonById,
+  fetchHackathonsById,
+} from "@/lib/actions/hackathon";
 import logo from "@/public/homepage/whitelogo.png";
 import { auth } from "@clerk/nextjs/server";
 import { unstable_cache } from "next/cache";
@@ -15,13 +28,9 @@ const HackathonPage = async ({
   const hackathonId = (await params).id;
   const { userId } = await auth();
 
-  const getHackathon = unstable_cache(
-    async () => {
-      return await fetchHackathonsById(hackathonId);
-    },
-    ["hackathon"],
-    { revalidate: 360, tags: ["hackathon"] }
-  );
+  const getHackathon = unstable_cache(async () => {
+    return await fetchHackathonsById(hackathonId);
+  });
 
   const hackathon = await getHackathon();
 
@@ -159,9 +168,7 @@ const HackathonPage = async ({
             {isAuthor && (
               <div className="w-full flex gap-2 justify-between">
                 <Button className="w-full">Edit</Button>
-                <Button className="w-full" variant={"destructive"}>
-                  Delete
-                </Button>
+                <DeleteButton id={hackathon._id} title={hackathon.title} />
               </div>
             )}
           </div>
