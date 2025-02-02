@@ -12,6 +12,7 @@ import {
 import { Button } from "./ui/button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify"; // Import toast
 
 interface DeleteButtonProps {
   title: string;
@@ -21,17 +22,20 @@ interface DeleteButtonProps {
 const DeleteButton = ({ title, id }: DeleteButtonProps) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
   const handleDelete = async () => {
     setLoading(true);
     try {
       await axios.delete(`/api/hackathons`, {
         data: { id },
       });
-      router.push("/dashboard/hackathons");
-      // Replace alert with a toast notification if available
+      toast.success(`${title} has been deleted! You will be redirected.`); // Show success toast
+      setTimeout(() => {
+        router.push("/dashboard/hackathons");
+      }, 2000); // Redirect after 2 seconds
     } catch (error: any) {
       console.error("Error deleting hackathon:", error);
-      alert("Failed to delete hackathon");
+      toast.error("Failed to delete hackathon"); // Show error toast
     } finally {
       setLoading(false);
     }
@@ -40,11 +44,10 @@ const DeleteButton = ({ title, id }: DeleteButtonProps) => {
   return (
     <div>
       <Dialog>
-        <DialogTrigger className="w-full">
-          <Button className="w-full" variant={"destructive"}>
-            Delete
-          </Button>
-        </DialogTrigger>
+        <Button className="w-full" variant={"destructive"}>
+          <DialogTrigger className="w-full">Delete</DialogTrigger>
+        </Button>
+
         <DialogContent>
           <DialogHeader>
             <DialogTitle className="text-red-500">Delete {title}</DialogTitle>

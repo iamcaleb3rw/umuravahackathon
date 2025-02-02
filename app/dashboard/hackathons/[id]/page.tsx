@@ -1,5 +1,6 @@
 import ContactDetail from "@/components/ContactDetail";
 import DeleteButton from "@/components/DeleteButton";
+import EditButton from "@/components/EditButton";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -18,6 +19,7 @@ import logo from "@/public/homepage/whitelogo.png";
 import { auth } from "@clerk/nextjs/server";
 import { unstable_cache } from "next/cache";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const HackathonPage = async ({
@@ -28,9 +30,9 @@ const HackathonPage = async ({
   const hackathonId = (await params).id;
   const { userId } = await auth();
 
-  const getHackathon = unstable_cache(async () => {
+  const getHackathon = async () => {
     return await fetchHackathonsById(hackathonId);
-  });
+  };
 
   const hackathon = await getHackathon();
 
@@ -166,9 +168,15 @@ const HackathonPage = async ({
               description={"Money Prize"}
             />
             {isAuthor && (
-              <div className="w-full flex gap-2 justify-between">
-                <Button className="w-full">Edit</Button>
-                <DeleteButton id={hackathon._id} title={hackathon.title} />
+              <div className="grid grid-cols-2 gap-2">
+                <div className="">
+                  <Link href={`/dashboard/hackathons/${hackathonId}/update`}>
+                    <Button className="w-full">Edit</Button>
+                  </Link>
+                </div>
+                <div>
+                  <DeleteButton id={hackathon._id} title={hackathon.title} />
+                </div>
               </div>
             )}
           </div>
