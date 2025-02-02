@@ -47,6 +47,7 @@ type HackathonFormData = z.infer<typeof hackathonSchema>;
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const hackathonId = (await params).id;
+  const router = useRouter();
 
   const {
     register,
@@ -56,8 +57,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   } = useForm<HackathonFormData>({
     resolver: zodResolver(hackathonSchema),
   });
-
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<HackathonFormData> = async (data: any) => {
     console.log("Submission started", data); // Log the data being submitted
