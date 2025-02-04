@@ -120,7 +120,7 @@ export async function PATCH(req: Request) {
       projectBrief,
       projectTasks,
     } = await req.json();
-
+    await connect();
     const updatedHackathon = await Hackathon.findOneAndUpdate(
       { _id: id },
       {
