@@ -1,6 +1,5 @@
 import ContactDetail from "@/components/ContactDetail";
 import DeleteButton from "@/components/DeleteButton";
-import EditButton from "@/components/EditButton";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
