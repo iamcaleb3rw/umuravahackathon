@@ -1,6 +1,11 @@
 import mongoose, { Schema } from "mongoose";
-import User from "./user";
-import { RequiredError } from "svix/dist/openapi";
+
+const participantSchema = new Schema({
+  clerkId: { type: String, required: true },
+  firstName: { type: String, required: true },
+  email: { type: String, required: true },
+  avatarUrl: { type: String, required: true },
+});
 
 const hackathonSchema = new Schema(
   {
@@ -23,7 +28,7 @@ const hackathonSchema = new Schema(
     startDate: { type: Date, required: true },
     deadline: { type: Date, required: true },
     createdBy: { type: String, required: true },
-    participants: [{ type: Schema.Types.ObjectId, ref: User, default: [] }],
+    participants: [participantSchema],
     status: {
       type: String,
       enum: ["Open", "Ongoing", "Closed"],

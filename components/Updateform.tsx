@@ -1,7 +1,7 @@
 "use client";
 import UpdateHackathonForm from "@/components/Updateform";
 import { z } from "zod";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { redirect, useRouter } from "next/navigation";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,8 @@ import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
 import { fetchHackathonsById } from "@/lib/actions/hackathon";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const hackathonSchema = z
   .object({
@@ -73,19 +75,24 @@ const Updateform = ({ hackathon }: { hackathon: any }) => {
       projectTasks: hackathon.projectTasks,
     });
   }, [hackathon, reset]);
-
+  const [loading, setLoading] = useState(false);
   const onSubmit: SubmitHandler<HackathonFormData> = async (data) => {
     console.log("Submission started", data);
     try {
+      setLoading(true);
+      toast.info("Updating...");
       const response = await axios.patch(`/api/hackathons`, {
         ...data,
         id: hackathon._id,
       });
       console.log("Hackathon updated successfully", response.data);
-      alert("Hackathon was updated!!");
+      toast.success("Hackathon updated successfully");
       redirect("/dashboard");
     } catch (error) {
+      toast.error("Error updating scribe");
       console.error("Failed to update hackathon", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -224,7 +231,16 @@ const Updateform = ({ hackathon }: { hackathon: any }) => {
             <p className="text-red-500">{errors.projectTasks.message}</p>
           )}
         </div>
-        <Button type="submit">Update Challenge</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? (
+            <>
+              <p>Updating...</p>
+              <Loader2 className="animate-spin" />
+            </>
+          ) : (
+            "Update"
+          )}
+        </Button>
       </form>
     </div>
   );

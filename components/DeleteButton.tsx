@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogClose,
@@ -12,7 +13,7 @@ import {
 import { Button } from "./ui/button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify"; // Import toast
+// Import toast
 
 interface DeleteButtonProps {
   title: string;
@@ -29,10 +30,9 @@ const DeleteButton = ({ title, id }: DeleteButtonProps) => {
       await axios.delete(`/api/hackathons`, {
         data: { id },
       });
-      toast.success(`${title} has been deleted! You will be redirected.`); // Show success toast
-      setTimeout(() => {
-        router.push("/dashboard/hackathons");
-      }, 2000); // Redirect after 2 seconds
+
+      toast.success("Challenge deleted!");
+      router.push("/dashboard/hackathons");
     } catch (error: any) {
       console.error("Error deleting hackathon:", error);
       toast.error("Failed to delete hackathon"); // Show error toast
@@ -44,9 +44,9 @@ const DeleteButton = ({ title, id }: DeleteButtonProps) => {
   return (
     <div>
       <Dialog>
-        <Button className="w-full" variant={"destructive"}>
-          <DialogTrigger className="w-full">Delete</DialogTrigger>
-        </Button>
+        <DialogTrigger className="w-full rounded-md p-2 text-white bg-red-500">
+          Delete
+        </DialogTrigger>
 
         <DialogContent>
           <DialogHeader>
@@ -56,10 +56,8 @@ const DeleteButton = ({ title, id }: DeleteButtonProps) => {
               challenge?
             </DialogDescription>
             <div className="flex gap-3">
-              <DialogClose className="w-full">
-                <Button className="w-full" variant={"outline"}>
-                  Discard
-                </Button>
+              <DialogClose className="w-full bg-secondary rounded-md">
+                <span className="w-full">Discard</span>
               </DialogClose>
               <Button
                 className="w-full"

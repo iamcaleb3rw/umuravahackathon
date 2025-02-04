@@ -21,6 +21,36 @@ export const fetchHackathonsById = async (id: string) => {
   }
 };
 
+export const registerParticipant = async (
+  id: string,
+  clerkId: string,
+  firstName: string,
+  email: string,
+  avatarUrl: string
+) => {
+  try {
+    await connect();
+    const updatedHackathon = await Hackathon.findOneAndUpdate(
+      { _id: id },
+      {
+        $addToSet: {
+          participants: { clerkId, firstName, email, avatarUrl },
+        },
+      },
+      { new: true, upsert: true }
+    );
+
+    if (!updatedHackathon) {
+      throw new Error("Hackathon not found");
+    }
+
+    return JSON.parse(JSON.stringify(updatedHackathon));
+  } catch (error) {
+    console.error("Error registering participant", error);
+    throw error;
+  }
+};
+
 export const deleteHackathonById = async (id: string) => {
   try {
     await connect();

@@ -4,7 +4,7 @@ import NavBar from "@/components/NavBar";
 import { DashboardSidebar } from "@/components/Sidebar";
 import { Suspense } from "react";
 import Loading from "./hackathons/loading";
-
+import { Toaster } from "sonner";
 export default function DashboardLayout({
   children,
 }: {
@@ -16,6 +16,7 @@ export default function DashboardLayout({
         <DashboardSidebar />
       </aside>
       <div className="flex flex-col flex-1 overflow-hidden">
+        <Toaster richColors />
         <NavBar />
         <Suspense fallback={<Loading />}>
           <main className="flex-1 overflow-y-auto">{children}</main>

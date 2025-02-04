@@ -1,3 +1,4 @@
+import Breadcrumb from "@/components/Breadcrumb";
 import Updateform from "@/components/Updateform";
 import { fetchHackathonsById } from "@/lib/actions/hackathon";
 import { auth } from "@clerk/nextjs/server";
@@ -13,12 +14,21 @@ const Update = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const hackathon = await getHackathon();
 
+  if (!hackathon) {
+    return redirect("/dashboard/hackathons");
+  }
+
   const isAuthor = hackathon.createdBy === userId;
   if (!isAuthor) {
     return redirect("/dashboard");
   }
   return (
     <div>
+      <Breadcrumb
+        backRoute="/dashboard"
+        currentRoute="Edit a Challenge"
+        className="border-b"
+      />
       <Updateform hackathon={hackathon} />
     </div>
   );
