@@ -120,7 +120,6 @@ export async function PATCH(req: Request) {
       projectBrief,
       projectTasks,
     } = await req.json();
-    console.log(id);
 
     const updatedHackathon = await Hackathon.findOneAndUpdate(
       { _id: id },
@@ -139,7 +138,7 @@ export async function PATCH(req: Request) {
         },
       }
     );
-    return new NextResponse("success", { status: 200 });
+    return NextResponse.json(updatedHackathon);
   } catch (error) {
     console.log("Error updating hackathon", error);
     return new NextResponse("Internal server error", { status: 500 });
