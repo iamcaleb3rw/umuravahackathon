@@ -99,3 +99,49 @@ export async function DELETE(req: Request) {
     return new NextResponse("Something went wrong", { status: 500 });
   }
 }
+
+export async function PATCH(req: Request) {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const {
+      id,
+      title,
+      deadline,
+      startDate,
+      endDate,
+      duration,
+      moneyPrize,
+      contactEmail,
+      projectDescription,
+      projectBrief,
+      projectTasks,
+    } = await req.json();
+    console.log(id);
+
+    const updatedHackathon = await Hackathon.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          title,
+          projectBrief,
+          deadline,
+          startDate,
+          endDate,
+          timeline: duration,
+          projectDescription,
+          prize: moneyPrize,
+          projectTasks,
+          contactEmail,
+        },
+      }
+    );
+    return new NextResponse("success", { status: 200 });
+  } catch (error) {
+    console.log("Error updating hackathon", error);
+    return new NextResponse("Internal server error", { status: 500 });
+  }
+}

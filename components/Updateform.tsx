@@ -1,17 +1,17 @@
 "use client";
-
-import type * as React from "react";
-import { useForm, Controller, type SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import UpdateHackathonForm from "@/components/Updateform";
 import { z } from "zod";
+import React, { useEffect } from "react";
+import { redirect, useRouter } from "next/navigation";
 import axios from "axios";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { DatePickerDemo } from "@/components/Datepicker";
-import { useRouter } from "next/navigation";
+import { Controller, useForm, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Textarea } from "@/components/ui/textarea";
+import { fetchHackathonsById } from "@/lib/actions/hackathon";
 
-// Define the schema using Zod
 const hackathonSchema = z
   .object({
     title: z.string().min(1, "Title is required"),
@@ -45,161 +45,189 @@ const hackathonSchema = z
     path: ["endDate"],
   });
 
-// Infer TypeScript types from the schema
 type HackathonFormData = z.infer<typeof hackathonSchema>;
 
-interface UpdateHackathonFormProps {
-  existingData: HackathonFormData; // Prop to receive existing data
-}
-
-const UpdateHackathonForm: React.FC<UpdateHackathonFormProps> = ({
-  existingData,
-}) => {
+const Updateform = ({ hackathon }: { hackathon: any }) => {
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<HackathonFormData>({
     resolver: zodResolver(hackathonSchema),
-    defaultValues: existingData, // Set default values from existing data
   });
-  const router = useRouter();
 
-  const onSubmit: SubmitHandler<HackathonFormData> = async (data) => {};
+  useEffect(() => {
+    // Set initial values for the form fields
+    reset({
+      title: hackathon.title,
+      deadline: new Date(hackathon.deadline),
+      startDate: new Date(hackathon.startDate),
+      endDate: new Date(hackathon.endDate),
+      duration: hackathon.timeline,
+      moneyPrize: hackathon.prize,
+      contactEmail: hackathon.contactEmail,
+      projectDescription: hackathon.projectDescription,
+      projectBrief: hackathon.projectBrief,
+      projectTasks: hackathon.projectTasks,
+    });
+  }, [hackathon, reset]);
 
-  console.log("Form errors:", errors); // Log errors to debug
+  const onSubmit: SubmitHandler<HackathonFormData> = async (data) => {
+    console.log("Submission started", data);
+    try {
+      const response = await axios.patch(`/api/hackathons`, {
+        ...data,
+        id: hackathon._id,
+      });
+      console.log("Hackathon updated successfully", response.data);
+      alert("Hackathon was updated!!");
+      redirect("/dashboard");
+    } catch (error) {
+      console.error("Failed to update hackathon", error);
+    }
+  };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 max-w-[700px] overflow-hidden px-1 border md:mx-auto text-sm"
-    >
-      <div>
-        <label htmlFor="title">Challenge/Hackathon Title</label>
-        <Input
-          id="title"
-          {...register("title")}
-          placeholder="Enter title"
-          className="focus-visible:ring-yellow-500 focus-visible:ring-1 focus-visible:ring-offset-0 p-2"
-          value={existingData.title}
-        />
-        {errors.title && <p className="text-red-500">{errors.title.message}</p>}
-      </div>
-      <div className="flex w-full gap-4">
-        <div className="w-full">
-          <label htmlFor="startDate">Start Date</label>
-          <Controller
-            name="startDate"
-            control={control}
-            render={({ field }) => (
-              <DatePickerDemo
-                value={field.value}
-                onChange={(date: Date | undefined) => field.onChange(date)}
-              />
-            )}
+    <div className="bg-muted">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 max-w-[700px] bg-white overflow-hidden md:mx-auto text-sm px-4 border-2 rounded-xl border-mutedtext/10  py-6"
+      >
+        <div className="text-center">
+          <h1 className="text-xl font-bold">Edit a Challenge</h1>
+          <p className="text-mutedtext">
+            Fill out these details to build your broadcast.
+          </p>
+        </div>
+        <div>
+          <label htmlFor="title">Challenge/Hackathon Title</label>
+          <Input
+            id="title"
+            {...register("title")}
+            placeholder="Enter title"
+            className="focus-visible:ring-yellow-500 focus-visible:ring-1 focus-visible:ring-offset-0 p-2"
           />
-          {errors.startDate && (
-            <p className="text-red-500">{errors.startDate.message}</p>
+          {errors.title && (
+            <p className="text-red-500">{errors.title.message}</p>
           )}
         </div>
-        <div className="w-full">
-          <label htmlFor="endDate">End Date</label>
-          <Controller
-            name="endDate"
-            control={control}
-            render={({ field }) => (
-              <DatePickerDemo
-                value={field.value}
-                onChange={(date: Date | undefined) => field.onChange(date)}
-              />
-            )}
-          />
-          {errors.endDate && (
-            <p className="text-red-500">{errors.endDate.message}</p>
-          )}
-        </div>
-      </div>
-      <div className="w-full">
-        <label htmlFor="deadline">Registration deadline</label>
-        <Controller
-          name="deadline"
-          control={control}
-          render={({ field }) => (
-            <DatePickerDemo
-              value={field.value}
-              onChange={(date: Date | undefined) => field.onChange(date)}
+        <div className="flex w-full gap-4">
+          <div className="w-full">
+            <label htmlFor="startDate">Start Date</label>
+            <Controller
+              name="startDate"
+              control={control}
+              render={({ field }) => (
+                <DatePickerDemo
+                  value={field.value}
+                  onChange={(date: Date | undefined) => field.onChange(date)}
+                />
+              )}
             />
-          )}
-        />
-        {errors.deadline && (
-          <p className="text-red-500">{errors.deadline.message}</p>
-        )}
-      </div>
-      <div className="w-full">
-        <label htmlFor="duration">Duration</label>
-        <Input
-          id="duration"
-          {...register("duration")}
-          placeholder={"How long will the hackathon take?"}
-        />
-        {errors.duration && (
-          <p className="text-red-500">{errors.duration.message}</p>
-        )}
-      </div>
-      <div className="flex gap-3">
+            {errors.startDate && (
+              <p className="text-red-500">{errors.startDate.message}</p>
+            )}
+          </div>
+          <div className="w-full">
+            <label htmlFor="endDate">End Date</label>
+            <Controller
+              name="endDate"
+              control={control}
+              render={({ field }) => (
+                <DatePickerDemo
+                  value={field.value}
+                  onChange={(date: Date | undefined) => field.onChange(date)}
+                />
+              )}
+            />
+            {errors.endDate && (
+              <p className="text-red-500">{errors.endDate.message}</p>
+            )}
+          </div>
+        </div>
         <div className="w-full">
-          <label htmlFor="moneyPrize">Money Prize</label>
-          <Input
-            id="moneyPrize"
-            {...register("moneyPrize")}
-            placeholder={"RWF"}
+          <label htmlFor="deadline">Registration deadline</label>
+          <Controller
+            name="deadline"
+            control={control}
+            render={({ field }) => (
+              <DatePickerDemo
+                value={field.value}
+                onChange={(date: Date | undefined) => field.onChange(date)}
+              />
+            )}
           />
-          {errors.moneyPrize && (
-            <p className="text-red-500">{errors.moneyPrize.message}</p>
+          {errors.deadline && (
+            <p className="text-red-500">{errors.deadline.message}</p>
           )}
         </div>
         <div className="w-full">
-          <label htmlFor="contactEmail">Contact Email</label>
+          <label htmlFor="duration">Duration</label>
           <Input
-            id="contactEmail"
-            type="email"
-            {...register("contactEmail")}
-            placeholder="Enter Email address"
+            id="duration"
+            {...register("duration")}
+            placeholder={"How long will the hackathon take?"}
           />
-          {errors.contactEmail && (
-            <p className="text-red-500">{errors.contactEmail.message}</p>
+          {errors.duration && (
+            <p className="text-red-500">{errors.duration.message}</p>
           )}
         </div>
-      </div>
-      <div>
-        <label htmlFor="projectDescription">Project Description</label>
-        <Textarea
-          id="projectDescription"
-          {...register("projectDescription")}
-          placeholder="Text here..."
-        />
-        {errors.projectDescription && (
-          <p className="text-red-500">{errors.projectDescription.message}</p>
-        )}
-      </div>
-      <div>
-        <label htmlFor="projectBrief">Project Brief</label>
-        <Textarea id="projectBrief" {...register("projectBrief")} />
-        {errors.projectBrief && (
-          <p className="text-red-500">{errors.projectBrief.message}</p>
-        )}
-      </div>
-      <div>
-        <label htmlFor="projectTasks">Project Description & Tasks</label>
-        <Textarea id="projectTasks" {...register("projectTasks")} />
-        {errors.projectTasks && (
-          <p className="text-red-500">{errors.projectTasks.message}</p>
-        )}
-      </div>
-      <Button type="submit">Update Challenge</Button>
-    </form>
+        <div className="flex gap-3">
+          <div className="w-full">
+            <label htmlFor="moneyPrize">Money Prize</label>
+            <Input
+              id="moneyPrize"
+              {...register("moneyPrize")}
+              placeholder={"RWF"}
+            />
+            {errors.moneyPrize && (
+              <p className="text-red-500">{errors.moneyPrize.message}</p>
+            )}
+          </div>
+          <div className="w-full">
+            <label htmlFor="contactEmail">Contact Email</label>
+            <Input
+              id="contactEmail"
+              type="email"
+              {...register("contactEmail")}
+              placeholder="Enter Email address"
+            />
+            {errors.contactEmail && (
+              <p className="text-red-500">{errors.contactEmail.message}</p>
+            )}
+          </div>
+        </div>
+        <div>
+          <label htmlFor="projectDescription">Project Description</label>
+          <Textarea
+            id="projectDescription"
+            {...register("projectDescription")}
+            placeholder="Text here..."
+          />
+          {errors.projectDescription && (
+            <p className="text-red-500">{errors.projectDescription.message}</p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="projectBrief">Project Brief</label>
+          <Textarea id="projectBrief" {...register("projectBrief")} />
+          {errors.projectBrief && (
+            <p className="text-red-500">{errors.projectBrief.message}</p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="projectTasks">Project Description & Tasks</label>
+          <Textarea id="projectTasks" {...register("projectTasks")} />
+          {errors.projectTasks && (
+            <p className="text-red-500">{errors.projectTasks.message}</p>
+          )}
+        </div>
+        <Button type="submit">Update Challenge</Button>
+      </form>
+    </div>
   );
 };
 
-export default UpdateHackathonForm;
+export default Updateform;

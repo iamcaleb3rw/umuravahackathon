@@ -18,7 +18,7 @@ export default function DashboardLayout({
       <div className="flex flex-col flex-1 overflow-hidden">
         <NavBar />
         <Suspense fallback={<Loading />}>
-          <main className="flex-1 overflow-y-auto p-1 md:p-4">{children}</main>
+          <main className="flex-1 overflow-y-auto">{children}</main>
         </Suspense>
       </div>
     </div>

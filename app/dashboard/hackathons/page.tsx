@@ -1,12 +1,11 @@
 import List from "@/components/List";
 
 import { fetchHackathons } from "@/lib/actions/hackathon";
-import { Hackathon } from "@/types/hackathon";
 
 import React from "react";
 
 const Hackathons = async () => {
-  const hackathons: Hackathon[] = await fetchHackathons();
+  const hackathons = await fetchHackathons();
   return (
     <div>
       <div>
