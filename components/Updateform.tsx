@@ -89,7 +89,6 @@ const Updateform = ({ hackathon }: { hackathon: any }) => {
       toast.success("Hackathon updated successfully");
       redirect("/dashboard");
     } catch (error) {
-      toast.error("Error updating scribe");
       console.error("Failed to update hackathon", error);
     } finally {
       setLoading(false);
