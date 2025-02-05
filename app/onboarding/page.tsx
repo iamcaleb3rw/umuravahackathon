@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { MoveRightIcon } from "lucide-react";
 
-const Onboarding: React.FC = () => {
+const Onboarding = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
