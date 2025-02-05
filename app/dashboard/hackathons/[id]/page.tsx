@@ -246,7 +246,12 @@ const HackathonPage = async ({
                       height={40}
                       className="rounded-full"
                     />
-                    <p className="text-sm">{participant.firstName}</p>
+                    <div>
+                      <p className="text-sm">{participant.firstName}</p>
+                      <p className="text-sm text-mutedtext">
+                        {participant.email}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
