@@ -1,11 +1,8 @@
 import StatCard from "@/components/StatCard";
 import { currentUser } from "@clerk/nextjs/server";
+import { type PageProps } from "@/.next/types/app/layout";
 
-export default async function Dashboard({
-  searchParams,
-}: {
-  searchParams: Record<string, string | undefined>;
-}) {
+export default async function Dashboard({ searchParams }: PageProps) {
   const user = await currentUser();
   const params = await searchParams;
   const role = params?.role || "organizer";
@@ -59,6 +56,7 @@ export default async function Dashboard({
       <div className="mt-4">
         <h1 className="text-lg font-semibold">Recent Challenges</h1>
       </div>
+      <p>{role}</p>
     </div>
   );
 }
