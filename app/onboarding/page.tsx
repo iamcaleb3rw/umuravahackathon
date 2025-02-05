@@ -6,10 +6,12 @@ import dynamic from "next/dynamic"; // 👈 Dynamically load Lottie
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { MoveRightIcon } from "lucide-react";
+import { toast } from "sonner";
 
 // Dynamically import Lottie to avoid SSR issues
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import webLottie from "@/public/about/Web.json";
+import axios from "axios";
 
 const Onboarding = () => {
   const router = useRouter();
@@ -18,13 +20,24 @@ const Onboarding = () => {
   // Prevent animation from being reloaded unnecessarily
   const animationData = useMemo(() => webLottie, []);
 
-  const handleChoice = (choice: string) => {
-    router.push(`/dashboard?role=${choice}`);
+  const handleChoice = async (choice: string) => {
+    setLoading(true);
+    try {
+      const response = await axios.patch("/api/onboarding", {
+        role: choice,
+      });
+      toast.success("Preference recored");
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center bg-muted justify-center">
-      <div className="bg-white border rounded-2xl">
+      <div className=" bg-white border rounded-2xl">
         <div className="flex justify-center border-b">
           <Image src={Logo} alt="Umurava Logo" width={145} />
         </div>

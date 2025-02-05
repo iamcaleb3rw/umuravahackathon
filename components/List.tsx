@@ -96,11 +96,7 @@ const List = ({ hackathons }: ListProps) => {
           filteredHackathons.map((hackathon) => (
             <ChallengeCard
               key={hackathon._id.toString()}
-              status={getHackathonStatus(
-                new Date(hackathon.startDate),
-                new Date(hackathon.endDate),
-                new Date(hackathon.deadline)
-              )}
+              status={hackathon.status}
               title={hackathon.title}
               level="(Intermediate, Senior)"
               timeline={hackathon.timeline}

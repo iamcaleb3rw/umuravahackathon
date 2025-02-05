@@ -11,6 +11,16 @@ export const fetchHackathons = async () => {
   }
 };
 
+export const numberedHackathons = async (limit: number) => {
+  try {
+    await connect();
+    const hackathons = await Hackathon.find().limit(limit);
+    return JSON.parse(JSON.stringify(hackathons));
+  } catch (error) {
+    console.log("Error fetching hackathons", error);
+  }
+};
+
 export const fetchHackathonsById = async (id: string) => {
   try {
     await connect();
