@@ -36,7 +36,7 @@ const RegisterButton = ({
       });
       toast.success(`Your participation was successfully recorded`); // Show success toast
       setTimeout(() => {
-        router.push("/dashboard/hackathons");
+        router.refresh();
       }, 2000); // Redirect after 2 seconds
     } catch (error: any) {
       console.error("Error deleting hackathon:", error);

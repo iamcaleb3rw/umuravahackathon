@@ -27,6 +27,7 @@ const Onboarding = () => {
         role: choice,
       });
       toast.success("Preference recored");
+      router.push("/dashboard");
       console.log(response);
     } catch (error) {
       console.error(error);
