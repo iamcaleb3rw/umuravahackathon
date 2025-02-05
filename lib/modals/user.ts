@@ -7,6 +7,7 @@ const UserSchema = new Schema(
     username: { type: "string", required: true, unique: true },
     password: { type: "string", required: true },
     avatar: { type: "string", default: "" },
+    role: { type: "string", default: "talent" },
     hackathons: [
       {
         type: mongoose.Schema.Types.ObjectId,

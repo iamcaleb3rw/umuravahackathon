@@ -1,5 +1,6 @@
 import User from "../modals/user";
 import connect from "../db";
+import { string } from "zod";
 
 export interface UserProps {
   id: string | null | undefined;
@@ -7,6 +8,13 @@ export interface UserProps {
   last_name: string | null | undefined;
   email_addresses: { email_address: string }[] | null | undefined;
   image_url: string | null | undefined;
+}
+
+interface OnboardingProps {
+  experience: string;
+  referall: string;
+  id: string;
+  role: string;
 }
 
 export const findUser = async (clerkId: string) => {
@@ -39,6 +47,11 @@ export const createOrUpdateUser = async ({
               ? email_addresses[0].email_address
               : null,
           imageUrl: image_url,
+          onboargingData: {
+            experience: "",
+            referall: "",
+            role: "",
+          },
         },
       },
       { upsert: true, new: true }
