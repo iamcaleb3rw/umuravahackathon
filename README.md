@@ -62,7 +62,7 @@ cd umuravahackathon
 npm install
 ```
 
-### Environment Variables 🔑{#environment-variables}
+### Environment Variables 🔑
 
 Create a `.env.local` file in your root directory with the following variables:
 
@@ -93,6 +93,6 @@ The app will be available at [localhost:3000/](http://localhost:3000)
 
 ---
 
-## Author{#author}
+## Author
 
 🚀 Built with ❤️ by [Caleb Ganza](https://calebganza.vercel.app)
