@@ -18,8 +18,22 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 
-const options = [
+// Define the option type
+interface Option {
+  value: string;
+  label: string;
+}
+
+// Define the props for the ComboboxDemo component
+interface ComboboxDemoProps {
+  register: UseFormRegister<any>; // Replace 'any' with your form data type
+  setValue: UseFormSetValue<any>; // Replace 'any' with your form data type
+  name: string;
+}
+
+const options: Option[] = [
   {
     value: "starter",
     label: "Starter | (0 to 1 year)",
@@ -38,17 +52,11 @@ const options = [
   },
 ];
 
-interface ComboboxDemoProps {
-  register: any;
-  setValue: any;
-  name: any;
-}
-
 export function ComboboxDemo({ register, setValue, name }: ComboboxDemoProps) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValueState] = React.useState("");
+  const [value, setValueState] = React.useState<string>("");
 
-  const handleSelect = (currentValue) => {
+  const handleSelect = (currentValue: string) => {
     const newValue = currentValue === value ? "" : currentValue;
     setValueState(newValue);
     setValue(name, newValue); // Update the form state
