@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Umurava Skills Challenge 🚀
+
+![Umurava Banner](https://placehold.co/1200x400/286EF0/white?text=Umurava+Skills+Challenge\nShowcase+Your+Tech+Prowess!&font=worksans)
+
+A competitive platform where tech enthusiasts enhance their skills through challenges and hackathons, while institutions discover top talent.
+
+## Table of Contents
+
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Pre-requisites](#pre-requisites)
+  - [Installation](#installation)
+  - [Environment Variables](#environment-variables)
+  - [Running the Project](#running-the-project)
+- [Author](#author)
+
+## Tech Stack
+
+### Frameworks & Languages
+
+- **Next.js** (App Router) – Full-stack React framework
+- **TypeScript** – Strongly typed JavaScript
+
+### Styling & UI Components
+
+- **Tailwind CSS** – Utility-first CSS framework
+- **Shadcn/ui** – Modern component library
+
+### Database & ORM/ODM
+
+- **MongoDB** – NoSQL database
+- **Mongoose** – Object-Document Mapper
+
+## Features
+
+- 🔒 Secure Authentication with Clerk
+- 🗄️ Project Management with MongoDB
+- 💻 Coding Challenges & Hackathons
+- 📊 Performance Analytics
+- 📱 Responsive UI Design
+- 🎨 Clean & Modern Interface
 
 ## Getting Started
 
-First, run the development server:
+### Pre-requisites
+
+- [Node v17+](https://nodejs.org/en/download)
+- [Clerk Auth API Keys](https://clerk.com)
+- [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database)
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone repository
+git clone https://github.com/iamcaleb3rw/umuravahackathon.git
+cd umuravahackathon
+
+# Install dependencies
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables 🔑
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file in your root directory with the following variables:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Clerk Authentication
 
-## Learn More
+```env
+# REQUIRED - Get from Clerk Dashboard
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
 
-To learn more about Next.js, take a look at the following resources:
+# OPTIONAL - Clerk Configuration
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/dashboard
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/onboarding
+SIGNING_SECRET=your_clerk_signing_secret
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# REQUIRED - MongoDB Atlas connection string
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/dbname
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Running the project
 
-## Deploy on Vercel
+```
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The app will be available at [localhost:3000/](http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+🚀 Built with ❤️ by [Caleb Ganza](https://calebganza.vercel.app)
