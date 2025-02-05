@@ -4,6 +4,8 @@
 
 A competitive platform where tech enthusiasts enhance their skills through challenges and hackathons, while institutions discover top talent.
 
+Live preview is available [here](https://umuravahackathon.vercel.app)
+
 ## Table of Contents
 
 - [Tech Stack](#tech-stack)
@@ -60,7 +62,7 @@ cd umuravahackathon
 npm install
 ```
 
-## Environment Variables 🔑
+### Environment Variables 🔑
 
 Create a `.env.local` file in your root directory with the following variables:
 
@@ -90,5 +92,7 @@ npm run dev
 The app will be available at [localhost:3000/](http://localhost:3000)
 
 ---
+
+## Author
 
 🚀 Built with ❤️ by [Caleb Ganza](https://calebganza.vercel.app)
