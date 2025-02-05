@@ -47,11 +47,7 @@ export const createOrUpdateUser = async ({
               ? email_addresses[0].email_address
               : null,
           imageUrl: image_url,
-          onboargingData: {
-            experience: "",
-            referall: "",
-            role: "",
-          },
+          role: "talent",
         },
       },
       { upsert: true, new: true }

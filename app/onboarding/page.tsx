@@ -1,20 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Logo from "@/public/homepage/logo.png";
 import Image from "next/image";
-import Lottie from "lottie-react";
-import webLottie from "@/public/about/Web.json";
-
+import dynamic from "next/dynamic"; // 👈 Dynamically load Lottie
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { MoveRightIcon } from "lucide-react";
+
+// Dynamically import Lottie to avoid SSR issues
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+import webLottie from "@/public/about/Web.json";
 
 const Onboarding = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
+  // Prevent animation from being reloaded unnecessarily
+  const animationData = useMemo(() => webLottie, []);
+
   const handleChoice = (choice: string) => {
-    // Navigate to the dashboard with the user's choice
     router.push(`/dashboard?role=${choice}`);
   };
 
@@ -36,7 +40,7 @@ const Onboarding = () => {
               </p>
             </div>
             <div>
-              <Lottie animationData={webLottie} loop={true} />
+              <Lottie animationData={animationData} loop={true} />
             </div>
           </div>
           <div className="p-3 flex flex-col gap-3 items-center justify-center">
