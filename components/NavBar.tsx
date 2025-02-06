@@ -16,6 +16,7 @@ import { SidebarLinks } from "@/SidebarLinks";
 import Link from "next/link";
 import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
+import SearchBar from "./Search";
 
 const NavBar = () => {
   return (
@@ -55,14 +56,7 @@ const NavBar = () => {
             </SheetContent>
           </Sheet>
         </div>
-        <div className="text-left relative max-w-[200px]">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-darktext" />
-          <Input
-            placeholder="Search"
-            className="pl-8 max-w-[400px] lg:w-[300px] w-full bg-muted focus-visible:ring-0 focus-visible:ring-offset-0"
-            type="search"
-          />
-        </div>
+        <SearchBar />
         <div className=" flex items-center">
           <div className="flex items-center gap-2">
             <Button

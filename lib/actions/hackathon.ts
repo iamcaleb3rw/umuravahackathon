@@ -31,6 +31,24 @@ export const fetchHackathonsById = async (id: string) => {
   }
 };
 
+export const fetchHackathonsByTitle = async (query: string) => {
+  try {
+    await connect();
+
+    // Escape special regex characters in the query
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+    // Perform a case-insensitive partial match search
+    const hackathons = await Hackathon.find({
+      title: { $regex: escapedQuery, $options: "i" },
+    });
+
+    return JSON.parse(JSON.stringify(hackathons));
+  } catch (error) {
+    console.log("Error querying hackathons", error);
+  }
+};
+
 export const registerParticipant = async (
   id: string,
   clerkId: string,

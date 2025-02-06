@@ -105,7 +105,7 @@ const List = ({ hackathons }: ListProps) => {
           ))
         ) : (
           <div className="col-span-full text-center text-mutedtext italic mt-6">
-            There are currently no {activeStatus} challenges
+            No hackathons found
           </div>
         )}
       </div>

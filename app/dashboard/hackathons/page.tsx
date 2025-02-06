@@ -1,11 +1,21 @@
 import List from "@/components/List";
 
-import { fetchHackathons } from "@/lib/actions/hackathon";
+import {
+  fetchHackathons,
+  fetchHackathonsByTitle,
+} from "@/lib/actions/hackathon";
 
 import React from "react";
 
-const Hackathons = async () => {
-  const hackathons = await fetchHackathons();
+const Hackathons = async (props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) => {
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || "";
+  const hackathons = await fetchHackathonsByTitle(query);
   return (
     <div className="p-2">
       <div>
