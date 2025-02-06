@@ -21,7 +21,7 @@ const SearchBar = () => {
     }
     replace(`${pathname}?${params.toString()}`);
     console.log(term);
-  }, 300);
+  }, 100);
   return (
     <div className="text-left relative max-w-[200px]">
       <Search className="absolute left-2 top-2.5 h-4 w-4 text-darktext" />
