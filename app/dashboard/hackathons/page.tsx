@@ -5,7 +5,7 @@ import {
   fetchHackathonsByTitle,
 } from "@/lib/actions/hackathon";
 
-import React from "react";
+import React, { Suspense } from "react";
 
 const Hackathons = async (props: {
   searchParams?: Promise<{
@@ -24,7 +24,9 @@ const Hackathons = async (props: {
           Join a challenge or a hackathon to gain valuable work experience
         </p>
       </div>
-      <List hackathons={hackathons} />
+      <Suspense fallback={<p>Loading...</p>}>
+        <List hackathons={hackathons} />
+      </Suspense>
     </div>
   );
 };
