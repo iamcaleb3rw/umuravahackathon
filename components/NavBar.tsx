@@ -17,6 +17,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
 import SearchBar from "./Search";
+import { Suspense } from "react";
 
 const NavBar = () => {
   return (
@@ -56,7 +57,10 @@ const NavBar = () => {
             </SheetContent>
           </Sheet>
         </div>
-        <SearchBar />
+        <Suspense>
+          <SearchBar />
+        </Suspense>
+
         <div className=" flex items-center">
           <div className="flex items-center gap-2">
             <Button
