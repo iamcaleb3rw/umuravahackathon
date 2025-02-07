@@ -44,7 +44,9 @@ const HackathonPage = async ({
   const participantsLength = hackathon.participants.length;
 
   const isAuthor = hackathon.createdBy === userId;
-
+  const isParticipant = hackathon.participants.some(
+    (participant: any) => participant.clerkId === userId
+  );
   // Get the current date
   const today = new Date(); // Current date
   const deadlineDate = new Date(hackathon.deadline); // Convert hackathon deadline to Date object
@@ -199,6 +201,7 @@ const HackathonPage = async ({
                     firstName={user?.firstName?.toString()}
                     email={user?.primaryEmailAddress?.emailAddress}
                     avatarUrl={user?.imageUrl}
+                    disabled={isParticipant}
                   />
                 </div>
               )}

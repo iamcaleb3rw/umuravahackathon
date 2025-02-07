@@ -42,9 +42,11 @@ const Navigation = () => {
           })}
         </div>
         <div className="flex items-center gap-1">
-          <Button variant={"navButton"} className="hidden xl:block">
-            Join the Program
-          </Button>
+          <Link href={"/sign-up"}>
+            <Button variant={"navButton"} className="hidden xl:block">
+              Join the Program
+            </Button>
+          </Link>
           <div className="xl:hidden">
             <MobileMenu />
           </div>

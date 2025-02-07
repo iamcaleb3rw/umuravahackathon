@@ -18,9 +18,7 @@ export default function DashboardLayout({
       <div className="flex flex-col flex-1 overflow-hidden">
         <Toaster richColors />
         <NavBar />
-        <Suspense fallback={<Loading />}>
-          <main className="flex-1 overflow-y-auto">{children}</main>
-        </Suspense>
+        <main className="flex-1 overflow-y-auto">{children}</main>
       </div>
     </div>
   );

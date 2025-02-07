@@ -1,8 +1,12 @@
 import React from "react";
 import ChallengeCard from "./ChallengeCard";
 import { Button } from "./ui/button";
+import { numberedHackathons } from "@/lib/actions/hackathon";
+import Link from "next/link";
 
-const Explore = () => {
+const Explore = async () => {
+  const hackathons = await numberedHackathons(3);
+  console.log(hackathons);
   return (
     <div className="min-h-screen md:mt-14 md:mb-14 mb-5">
       <div className="flex flex-col gap-14">
@@ -17,35 +21,27 @@ const Explore = () => {
           </p>
         </div>
         <div className="w-full px-3 lg:grid-cols-2 xl:max-w-[1100px] grid grid-cols-1 xl:grid-cols-3 gap-3 h-full mx-auto">
-          <ChallengeCard
-            status={"Open"}
-            title={"Design a dashboard for SokoFund"}
-            level="(Junior, Intermediate, Senior)"
-            timeline="15 Days"
-            id="dnrjncjre"
-          />
-          <ChallengeCard
-            status={"Open"}
-            title={"Design a dashboard for SokoFund"}
-            level="(Junior, Intermediate, Senior)"
-            timeline="15 Days"
-            id="cbejbchjer"
-          />
-          <ChallengeCard
-            status={"Open"}
-            title={"Design a dashboard for SokoFund"}
-            level="(Junior, Intermediate, Senior)"
-            timeline="15 Days"
-            id="zcjrcerbchjhje"
-          />
+          {hackathons.map((hackathon: any) => (
+            <div key={hackathon._id}>
+              <ChallengeCard
+                status={"Open"}
+                title={"Design a dashboard for SokoFund"}
+                level="(Junior, Intermediate, Senior)"
+                timeline="15 Days"
+                id="zcjrcerbchjhje"
+              />
+            </div>
+          ))}
         </div>
         <div className="text-center">
-          <Button
-            variant="outline"
-            className="w-[200px] border-primary text-primary"
-          >
-            View More
-          </Button>
+          <Link href="/dashboard/hackathons">
+            <Button
+              variant="outline"
+              className="w-[200px] border-primary text-primary"
+            >
+              View More
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

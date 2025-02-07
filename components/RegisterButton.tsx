@@ -1,10 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import axios from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { EmailAddress } from "@clerk/nextjs/server";
 
 interface RegisterButtonProps {
   id: string | undefined;
@@ -12,6 +11,7 @@ interface RegisterButtonProps {
   firstName: string | undefined;
   email: string | undefined;
   avatarUrl: string | undefined;
+  disabled: boolean;
 }
 
 const RegisterButton = ({
@@ -20,10 +20,12 @@ const RegisterButton = ({
   firstName,
   email,
   avatarUrl,
+  disabled,
 }: RegisterButtonProps) => {
   const [loading, setLoading] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
   const router = useRouter();
-  console.log(id, clerkId, firstName);
+
   const handleJoin = async () => {
     setLoading(true);
     try {
@@ -34,22 +36,47 @@ const RegisterButton = ({
         email,
         avatarUrl,
       });
-      toast.success(`Your participation was successfully recorded`); // Show success toast
+
+      // Immediate UI feedback
+      setIsRegistered(true);
+      toast.success("Successfully registered for the challenge!");
+
+      // Refresh data after short delay
       setTimeout(() => {
         router.refresh();
-      }, 2000); // Redirect after 2 seconds
+      }, 1500);
     } catch (error: any) {
-      console.error("Error deleting hackathon:", error);
-      toast.error("Failed to delete hackathon"); // Show error toast
+      const errorMessage = error.response?.data?.error || "Registration failed";
+      toast.error(errorMessage);
+
+      // Handle duplicate registration error specifically
+      if (error.response?.status === 409) {
+        setIsRegistered(true);
+      }
     } finally {
       setLoading(false);
     }
   };
+
   return (
-    <div>
-      <Button className="w-full" onClick={handleJoin}>
-        Join Challenge
+    <div className="w-full">
+      <Button
+        disabled={disabled || isRegistered || loading}
+        className="w-full transition-all"
+        onClick={handleJoin}
+      >
+        {loading
+          ? "Processing..."
+          : isRegistered
+          ? "✓ Already Registered"
+          : "Join Challenge"}
       </Button>
+
+      {isRegistered && (
+        <p className="text-sm text-center text-green-600 mt-2">
+          You're successfully registered!
+        </p>
+      )}
     </div>
   );
 };

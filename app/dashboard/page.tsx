@@ -1,7 +1,11 @@
 import ChallengeCard from "@/components/ChallengeCard";
 import StatCard from "@/components/StatCard";
 import TalentStats from "@/components/TalentStats";
-import { fetchHackathons, numberedHackathons } from "@/lib/actions/hackathon";
+import {
+  fetchHackathons,
+  getTotalParticipants,
+  numberedHackathons,
+} from "@/lib/actions/hackathon";
 import { findUser } from "@/lib/actions/user";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -16,7 +20,9 @@ export default async function Dashboard() {
 
   const dbUser = await findUser(userId);
 
-  const hackathons = await fetchHackathons(); // Fetch all hackathons
+  const hackathons = await fetchHackathons();
+  const totalParticipants = await getTotalParticipants(userId);
+  console.log(totalParticipants);
 
   const role = dbUser.role;
   if (!role) {
@@ -28,7 +34,6 @@ export default async function Dashboard() {
   const openHackathons = hackathons.filter(
     (h: any) => h.status === "Open"
   ).length;
-  console.log(openHackathons);
   const ongoingHackathons = hackathons.filter(
     (h: any) => h.status === "Ongoing"
   ).length;
@@ -59,7 +64,7 @@ export default async function Dashboard() {
             <StatCard
               timeline=""
               title="Total Participants"
-              number={19341}
+              number={totalParticipants}
               metric="23%"
             />
           </div>

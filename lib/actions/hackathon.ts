@@ -49,6 +49,20 @@ export const fetchHackathonsByTitle = async (query: string) => {
   }
 };
 
+export const getTotalParticipants = async (id: string) => {
+  try {
+    await connect();
+    const hackathons = await Hackathon.find({ createdBy: id });
+    const totalParticipants = hackathons.reduce(
+      (sum, hackathon) => sum + hackathon.participants.length,
+      0
+    );
+    return totalParticipants;
+  } catch (error) {
+    console.log("Error getting total participants", error);
+  }
+};
+
 export const registerParticipant = async (
   id: string,
   clerkId: string,
