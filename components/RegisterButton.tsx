@@ -70,6 +70,7 @@ const RegisterButton = ({
           : isRegistered
           ? "✓ Already Registered"
           : "Join Challenge"}
+        {isRegistered && "✓ Already Registered"}
       </Button>
 
       {isRegistered && (
