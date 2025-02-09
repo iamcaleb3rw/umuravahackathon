@@ -42,6 +42,7 @@ Live preview is available [here](https://umuravahackathon.vercel.app)
 - 📊 Performance Analytics
 - 📱 Responsive UI Design
 - 🎨 Clean & Modern Interface
+- 🔎 Searching and Filtering
 
 ## Getting Started
 
