@@ -42,7 +42,7 @@ export async function PATCH(req: Request) {
     const hackathonWithParticipants = await registerParticipant(
       id,
       clerkId,
-      firstName,
+      firstName || email,
       email,
       avatarUrl
     );

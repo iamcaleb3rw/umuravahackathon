@@ -63,8 +63,8 @@ const List = ({ hackathons }: ListProps) => {
 
   return (
     <div>
-      <div className="mt-6 flex justify-between">
-        <div className="flex gap-2 overflow-x-auto">
+      <div className="mt-6 flex gap-4 justify-between">
+        <div className="flex gap-2 border md:border-none p-1 md:p-0 rounded-xl md:rounded-none overflow-x-auto">
           {(["All", "Completed", "Open", "Ongoing"] as const).map((status) => (
             <div
               key={status}
@@ -91,7 +91,7 @@ const List = ({ hackathons }: ListProps) => {
           </Button>
         </Link>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-6">
         {filteredHackathons.length > 0 ? (
           filteredHackathons.map((hackathon) => (
             <ChallengeCard

@@ -54,7 +54,7 @@ export default async function Dashboard() {
 
       {role === "organizer" && (
         <div className="flex flex-col gap-3 mt-4">
-          <div className="flex gap-3">
+          <div className="flex flex-col md:flex-row gap-3">
             <StatCard
               timeline=""
               title="Total Challenges"
@@ -68,7 +68,7 @@ export default async function Dashboard() {
               metric="23%"
             />
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col lg:flex-row gap-3">
             <StatCard
               timeline=""
               title="Completed Challenges"
@@ -116,7 +116,7 @@ export default async function Dashboard() {
 
       <div className="mt-4">
         <h1 className="text-lg font-semibold">Recent Challenges</h1>
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {hackathons.length > 0 ? (
             hackathons.map((hackathon: any) => (
               <ChallengeCard

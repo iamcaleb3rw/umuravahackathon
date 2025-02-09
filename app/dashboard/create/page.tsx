@@ -228,7 +228,7 @@ const CreateHackathonForm: React.FC = () => {
           {isCreating ? (
             <>
               <p>Creating</p>
-              <Loader2 />
+              <Loader2 className="animate-spin" />
             </>
           ) : (
             "Create challenge"

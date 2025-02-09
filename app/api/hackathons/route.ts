@@ -107,6 +107,11 @@ export async function PATCH(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
+    const user = await findUser(userId);
+
+    if (user.role === "talent") {
+      return new NextResponse("Unauthorized", { status: 403 });
+    }
     const {
       id,
       title,

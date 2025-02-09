@@ -51,12 +51,14 @@ const HackathonPage = async ({
   const today = new Date(); // Current date
   const deadlineDate = new Date(hackathon.deadline); // Convert hackathon deadline to Date object
 
+  const isPassed = deadlineDate < today;
+
   return (
     <div className="p-2">
       <div className="grid grid-cols-8 gap-3">
-        <div className="col-span-5 ">
+        <div className="col-span-8 lg:col-span-5">
           <div className="border p-3 rounded-lg">
-            <div className="min-h-[270px] bg-primary flex items-center justify-center rounded-md">
+            <div className="min-h-[200px] lg:min-h-[270px] bg-primary flex items-center justify-center rounded-md">
               <Image src={logo} alt="Logo" width={180} />
             </div>
             <div>
@@ -79,7 +81,7 @@ const HackathonPage = async ({
             </div>
           </div>
         </div>
-        <div className="col-span-3 flex flex-col gap-3">
+        <div className="col-span-8 lg:col-span-3 flex flex-col gap-3">
           <div className="border p-3 rounded-lg">
             <div>
               <h1 className="font-semibold ">Key Instructions</h1>
@@ -201,7 +203,7 @@ const HackathonPage = async ({
                     firstName={user?.firstName?.toString()}
                     email={user?.primaryEmailAddress?.emailAddress}
                     avatarUrl={user?.imageUrl}
-                    disabled={isParticipant}
+                    disabled={isParticipant || isPassed}
                   />
                 </div>
               )}
