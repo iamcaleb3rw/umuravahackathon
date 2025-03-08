@@ -10,7 +10,7 @@ interface TagComponentProps {
 
 const TagComponent = ({ name, count }: TagComponentProps) => {
   return (
-    <div className="border h-full font-medium px-2 w-fitflex gap-1 text-xs items-center rounded-lg">
+    <div className="border h-full font-medium px-2 w-fit flex gap-1 text-xs items-center rounded-lg">
       <NotebookText strokeWidth={1.3} size={20} />
       <p>{name}</p>
       <div className="bg-primary h-4 w-4 text-xs font-semibold text-white rounded-full flex items-center justify-center">
