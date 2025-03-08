@@ -14,9 +14,9 @@ const Hackathons = async () => {
         {hackathons.map((hackathon: any) => (
           <ChallengeCard
             status={"Open"}
-            title={"Design a dashboard for SokoFund"}
+            title={hackathon.title}
             level="(Junior, Intermediate, Senior)"
-            timeline="15 Days"
+            timeline={hackathon.timeline}
             id={hackathon._id.toString()}
           />
         ))}

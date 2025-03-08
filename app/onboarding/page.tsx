@@ -5,7 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic"; // 👈 Dynamically load Lottie
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { MoveRightIcon } from "lucide-react";
+import { Loader2, MoveRightIcon } from "lucide-react";
 import { toast } from "sonner";
 
 // Dynamically import Lottie to avoid SSR issues
@@ -65,7 +65,9 @@ const Onboarding = () => {
                   className="w-full group"
                   variant={"outline"}
                   onClick={() => handleChoice("talent")}
+                  disabled={loading}
                 >
+                  {loading && <Loader2 className="animate-spin" />}
                   As a Talent
                   <MoveRightIcon className="group-hover:translate-x-2 transition-transform" />
                 </Button>
@@ -75,7 +77,10 @@ const Onboarding = () => {
                   className="w-full group"
                   variant={"outline"}
                   onClick={() => handleChoice("organizer")}
+                  disabled={loading}
                 >
+                  {" "}
+                  {loading && <Loader2 className="animate-spin" />}
                   As an Organizer
                   <MoveRightIcon className="group-hover:translate-x-2 transition-transform" />
                 </Button>

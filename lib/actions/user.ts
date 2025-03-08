@@ -27,6 +27,8 @@ export const findUser = async (clerkId: string) => {
   }
 };
 
+
+
 export const createOrUpdateUser = async ({
   id,
   first_name,

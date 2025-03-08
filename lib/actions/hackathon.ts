@@ -93,12 +93,7 @@ export const registerParticipant = async (
   }
 };
 
-export const getRole = async (id: string) => {
-  try {
-  } catch (error) {
-    console.log("Error getting user role");
-  }
-};
+
 
 export const deleteHackathonById = async (id: string) => {
   try {
